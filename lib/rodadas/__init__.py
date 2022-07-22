@@ -16,14 +16,10 @@ def raspagem_rodadas():
 
     soup = BeautifulSoup(site.content, 'html.parser')
 
-    header = soup.find_all("header", class_="aside-header")
-    jogos = soup.find_all("div", class_="aside-content")
-
     dados = []
+    jogos_da_rodada = []
 
-    i = 0
-
-    print(jogos[i].find_all("div", class_="clearfix")[i].find_all("div", class_="time pull-left")[0].span.text)
+    header = soup.find_all("header", class_="aside-header")
 
 
     for i in range(0, len(header)):
@@ -31,9 +27,24 @@ def raspagem_rodadas():
 
         rodada = header[i].h3.text
 
+        jogos_container = soup.find_all("div", class_="aside-content")
 
-        dados.append([{rodada: {'Jogos': 'B'}}])
+        
+        numero_jogos_por_rodada = 10
+        for index in range(0, numero_jogos_por_rodada):
+
+            jogos_info = jogos_container[i].find_all("div", class_="clearfix")[index]
+            time_casa = jogos_info.find_all("div", class_="time pull-left")[0].span.text
+            time_fora = jogos_info.find_all("div", class_="time pull-right")[0].span.text
+            resultado_info = jogos_info.find_all("strong", class_="partida-horario center-block")[0].prettify()
+            confronto = time_casa + " x " + time_fora
+
+            print(resultado_info)
+
+            jogos_da_rodada.append([{'Confronto' : confronto}, {'Resultado' : '1 x 1'}])
+
+        dados.append([{rodada: {'Jogos': jogos_da_rodada, 'Resultado': 'B'}}])
 
     #print(dados)
 
-    return header
+    return dados

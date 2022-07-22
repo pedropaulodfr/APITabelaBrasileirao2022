@@ -52,7 +52,7 @@ def rodada():
     
     att = raspagem_rodadas()
 
-    return 'Rodada'
+    return jsonify(att)
 
 
 app.run()
