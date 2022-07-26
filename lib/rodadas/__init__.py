@@ -1,3 +1,4 @@
+from threading import local
 import requests
 
 
@@ -16,35 +17,54 @@ def raspagem_rodadas():
 
     soup = BeautifulSoup(site.content, 'html.parser')
 
+    rodadas_container = soup.find_all("div", class_="aside-content")
+
     dados = []
     jogos_da_rodada = []
 
-    header = soup.find_all("header", class_="aside-header")
+
+    for rodada in range(0, 38):
 
 
-    for i in range(0, len(header)):
-        #print(header[i].h3.text)
+        rodadas_ul = rodadas_container[rodada].find_all("ul", class_="list-unstyled")
+        rodadas_li = rodadas_ul[0].find_all("li")
 
-        rodada = header[i].h3.text
 
-        jogos_container = soup.find_all("div", class_="aside-content")
+        for jogo_da_rodada in range(0, len(rodadas_li)):
 
-        
-        numero_jogos_por_rodada = 10
-        for index in range(0, numero_jogos_por_rodada):
 
-            jogos_info = jogos_container[i].find_all("div", class_="clearfix")[index]
-            time_casa = jogos_info.find_all("div", class_="time pull-left")[0].span.text
-            time_fora = jogos_info.find_all("div", class_="time pull-right")[0].span.text
-            resultado_info = jogos_info.find_all("strong", class_="partida-horario center-block")[0].prettify()
-            confronto = time_casa + " x " + time_fora
+            rodadas_div = rodadas_li[jogo_da_rodada].find_all("div")
+            clearfix = rodadas_div[0].find_all("div", class_="clearfix")
+            clearfix_a = clearfix[0].find_all("a", class_="no-underline")
 
-            print(resultado_info)
+            time_casa_div = clearfix_a[0].find_all("div", class_="time pull-left")
+            time_casa_nome = time_casa_div[0].find_all("span", class_="time-sigla")[0].text
 
-            jogos_da_rodada.append([{'Confronto' : confronto}, {'Resultado' : '1 x 1'}])
+            time_fora_div = clearfix_a[0].find_all("div", class_="time pull-right")
+            time_fora_nome = time_fora_div[0].find_all("span", class_="time-sigla")[0].text
 
-        dados.append([{rodada: {'Jogos': jogos_da_rodada, 'Resultado': 'B'}}])
+            confronto = time_casa_nome + " x " + time_fora_nome
 
-    #print(dados)
+            resultado_strong = clearfix_a[0].find_all("strong", class_="partida-horario center-block")
+
+
+            try:
+                resultado = resultado_strong[0].find_all("span")[0].text
+            except:
+                resultado = "- x -"
+
+
+            data_partida = rodadas_div[0].find_all("span")[0].text
+            data_partida = data_partida.replace("\n", "").replace("\r", "").replace("              ", " ").replace("          ", " ")
+
+            local_partida = rodadas_div[0].find_all("span", class_="partida-desc text-1 color-lightgray block uppercase text-center")[0].text
+            local_partida = local_partida.replace("\n", "").replace("\r", "").replace("              ", "").replace("Como foi o jogo", "").replace("Detalhes do jogo", "")
+
+
+            jogos_da_rodada.append([{'Confronto' : confronto}, {'Resultado' : resultado}, {'Data' : data_partida}, {'Local' : local_partida}])
+
+        dados.append([{"Rodada " + str(rodada + 1): {'Jogos': jogos_da_rodada}}])
+
+      
 
     return dados
