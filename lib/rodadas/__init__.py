@@ -1,4 +1,3 @@
-from threading import local
 import requests
 
 
@@ -65,6 +64,6 @@ def raspagem_rodadas():
 
         dados.append([{"Rodada " + str(rodada + 1): {'Jogos': jogos_da_rodada}}])
 
-      
+
 
     return dados

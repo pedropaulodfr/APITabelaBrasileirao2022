@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 
 from lib.tabela import raspagem_tabela
 from lib.rodadas import raspagem_rodadas
+from lib.artilharia import raspagem_artilharia
 
 
 
@@ -51,6 +52,14 @@ def tabela():
 def rodada():
     
     att = raspagem_rodadas()
+
+    return jsonify(att)
+
+
+@app.route("/artilheiros")
+def artilharia():
+
+    att = raspagem_artilharia()
 
     return jsonify(att)
 
