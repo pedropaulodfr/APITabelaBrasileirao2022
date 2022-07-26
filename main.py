@@ -63,5 +63,3 @@ def artilharia():
 
     return jsonify(att)
 
-
-app.run()
