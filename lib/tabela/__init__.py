@@ -42,12 +42,11 @@ def raspagem_tabela():
             tabela[i].find_all("td")[11].find_all("span")[1].text, 
             tabela[i].find_all("td")[11].find_all("span")[2].text
             ])
+        escudo = tabela[i].find_all("img", class_="icon escudo m-r-10")[0].get("src")
         try:
             proximo_jogo = tabela[i].find_all("img", class_="icon escudo")[0].get("title")
-            escudo = tabela[i].find_all("img", class_="icon escudo m-r-10")[0].get("src")
         except:
-            proximo_jogo = "Sem Imagem"
-            escudo = "https://triunfo.pe.gov.br/pm_tr430/wp-content/uploads/2018/03/sem-foto.jpg" 
+            proximo_jogo = ""
 
         dados.append([
             posicao,
