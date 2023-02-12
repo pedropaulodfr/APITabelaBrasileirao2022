@@ -64,4 +64,4 @@ def artilharia():
     return jsonify(att)
 
 
-app.run()
+app.run("0.0.0.0")
