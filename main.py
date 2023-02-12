@@ -35,7 +35,7 @@ def tabela():
             'Gols-Pro': att[i][7],
             'Gols-Contra': att[i][8],
             'Saldo-Gols': att[i][9],
-            'Catoes-Amarelos': att[i][10],
+            'Cartoes-Amarelos': att[i][10],
             'Cartoes-Vermelhos': att[i][11],
             'Aproveitamento': att[i][12],
             'Recentes': att[i][13][i],
