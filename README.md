@@ -16,15 +16,10 @@ Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do
 
 <br>
 
-<h4 align="center">
-  🚧 API em construção... 🚧
-</h4>
-
-
 ### Sobre
 
 <p align="center">
-Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do site da CBF, para consultar a tabela de classificação do Campeonato Brasileiro 2022.
+Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do site da CBF, para consultar a tabela de classificação do Campeonato Brasileiro 2022, bem como os seus artilheiros e as rodadas.
 </p>
 
 
