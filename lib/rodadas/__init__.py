@@ -22,7 +22,7 @@ def raspagem_rodadas():
     jogos_da_rodada = []
 
 
-    for rodada in range(0, 38):
+    for rodada in range(0, 5): # (0, 38)
 
 
         rodadas_ul = rodadas_container[rodada].find_all("ul", class_="list-unstyled")
@@ -61,8 +61,18 @@ def raspagem_rodadas():
 
 
             jogos_da_rodada.append([{'Confronto' : confronto}, {'Resultado' : resultado}, {'Data' : data_partida}, {'Local' : local_partida}])
+            '''jogos_da_rodada.append([
+                confronto, 
+                resultado, 
+                data_partida, 
+                local_partida
+            ])'''
 
-        dados.append([{"Rodada " + str(rodada + 1): {'Jogos': jogos_da_rodada}}])
+        #dados.append([{"Rodada " + str(rodada + 1): {'Jogos': jogos_da_rodada}}])
+        dados.append([
+            str(rodada + 1),
+            jogos_da_rodada
+        ])
 
 
 

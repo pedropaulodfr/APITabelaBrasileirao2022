@@ -53,15 +53,33 @@ def rodada():
     
     att = raspagem_rodadas()
 
-    return jsonify(att)
+    rodada = []
+
+    for i in range(0, len(att)):
+        rodada.append({
+            "Rodada": att[i][0],
+            "Jogos": att[i][1]
+        })
+
+    return jsonify(rodada)
 
 
 @app.route("/artilheiros")
 def artilharia():
 
     att = raspagem_artilharia()
+    
+    artilheiro = []
 
-    return jsonify(att)
+    for i in range(0, len(att)):
+        artilheiro.append({
+            "Posicao": att[i][0],
+            "Apelido": att[i][1],
+            "Clube": att[i][2],
+            "Gols": att[i][3]
+        })
+
+    return jsonify(artilheiro)
 
 
 app.run("0.0.0.0")

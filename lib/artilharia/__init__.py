@@ -25,7 +25,6 @@ def raspagem_artilharia():
 
 
     for i in range(0, len(tr_atilharia) - 1):
-
     
         gols  = tr_atilharia[i].find_all("th")[0].text
         apelido = tr_atilharia[i].find_all("td")[2].text
@@ -33,9 +32,12 @@ def raspagem_artilharia():
         img_clube = td_clube[0].find_all("img", class_="icon escudo")
         clube = img_clube[0].get("alt")
 
-        print(apelido, gols, clube)
-
-        artilheios.append([{"Posicao": i + 1}, {"Jogador": apelido}, {"Gols": gols}, {"Clube" : clube}])
+        artilheios.append([
+            i + 1,
+            apelido,
+            clube,
+            gols
+        ])
 
 
 
