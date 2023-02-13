@@ -17,69 +17,78 @@ def home():
 @app.route("/tabela")
 def tabela():
 
-
     att = raspagem_tabela()
 
     time = []
 
-    for i in range(0, len(att)):
 
-        time.append({
-            'Posicao': att[i][0],
-            'Time': att[i][1],
-            'Pontos': att[i][2],
-            'Jogos': att[i][3],
-            'Vitorias': att[i][4],
-            'Empates': att[i][5],
-            'Derrotas': att[i][6],
-            'Gols-Pro': att[i][7],
-            'Gols-Contra': att[i][8],
-            'Saldo-Gols': att[i][9],
-            'Cartoes-Amarelos': att[i][10],
-            'Cartoes-Vermelhos': att[i][11],
-            'Aproveitamento': att[i][12],
-            'Recentes': att[i][13][i],
-            'Proximo-Jogo': att[i][14],
-            'Escudo': att[i][15],
-            })
+    try:
+        for i in range(0, len(att)):
+            time.append({
+                'Posicao': att[i][0],
+                'Time': att[i][1],
+                'Pontos': att[i][2],
+                'Jogos': att[i][3],
+                'Vitorias': att[i][4],
+                'Empates': att[i][5],
+                'Derrotas': att[i][6],
+                'Gols-Pro': att[i][7],
+                'Gols-Contra': att[i][8],
+                'Saldo-Gols': att[i][9],
+                'Cartoes-Amarelos': att[i][10],
+                'Cartoes-Vermelhos': att[i][11],
+                'Aproveitamento': att[i][12],
+                'Recentes': att[i][13][i],
+                'Proximo-Jogo': att[i][14],
+                'Escudo': att[i][15],
+                })
+        
+    except:
+        time.append({"message": "error"})
 
 
     return jsonify(time)
-
+    
 
 
 @app.route("/rodadas")
 def rodada():
     
-    att = raspagem_rodadas()
+        att = raspagem_rodadas()
 
-    rodada = []
+        rodada = []
 
-    for i in range(0, len(att)):
-        rodada.append({
-            "Rodada": att[i][0],
-            "Jogos": att[i][1]
-        })
+    try:
+        for i in range(0, len(att)):
+            rodada.append({
+                "Rodada": att[i][0],
+                "Jogos": att[i][1]
+            })
+
+    except:
+        rodada.append({"message": "error"})
 
     return jsonify(rodada)
-
 
 @app.route("/artilheiros")
 def artilharia():
 
-    att = raspagem_artilharia()
-    
-    artilheiro = []
+        att = raspagem_artilharia()
+        
+        artilheiro = []
 
-    for i in range(0, len(att)):
-        artilheiro.append({
-            "Posicao": att[i][0],
-            "Apelido": att[i][1],
-            "Clube": att[i][2],
-            "Gols": att[i][3]
-        })
+    try: 
+        for i in range(0, len(att)):
+            artilheiro.append({
+                "Posicao": att[i][0],
+                "Apelido": att[i][1],
+                "Clube": att[i][2],
+                "Gols": att[i][3]
+            })
+    
+    except:
+        artilheiro.append({"message": "error"})
 
     return jsonify(artilheiro)
-
 
 app.run("0.0.0.0")
