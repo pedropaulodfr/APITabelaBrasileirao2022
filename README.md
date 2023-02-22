@@ -1,7 +1,7 @@
 # README
 
 <p align="center">
-Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do site da CBF, para consultar a tabela de classificação do Campeonato Brasileiro 2022
+Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do site da CBF, para consultar a tabela de classificação, atilharia e rodadas do Campeonato Brasileiro 2022.
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@ Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do
 ### Sobre
 
 <p align="center">
-Esse projeto visa o desenvolvimento de uma API, fazendo uma raspagem de dados do site da CBF, para consultar a tabela de classificação do Campeonato Brasileiro 2022.
+Esta documentação descreve o código usado para criar uma API para a tabela do campeonato brasileiro. Esta API fornece informações sobre as posições de classificação, jogos, pontuação, vitórias e derrotas, gols marcados e sofridos, cartões amarelos e vermelhos, aproveitamento, rodadas recentes e próximos jogos, assim como os escudos dos times.
 </p>
 
 
@@ -42,6 +42,8 @@ Beautiful Soup <br>
 Requests <br>
 Flask
 
+### Experimente
+https://apitabelabrasileirao2022.onrender.com
 
 
 ### Autor
